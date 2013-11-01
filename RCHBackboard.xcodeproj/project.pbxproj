@@ -1,0 +1,553 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D5135111822B5EA002502ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5135101822B5EA002502ED /* Foundation.framework */; };
+		1D5135131822B5EA002502ED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5135121822B5EA002502ED /* CoreGraphics.framework */; };
+		1D5135151822B5EA002502ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5135141822B5EA002502ED /* UIKit.framework */; };
+		1D51351B1822B5EA002502ED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D5135191822B5EA002502ED /* InfoPlist.strings */; };
+		1D51351D1822B5EA002502ED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D51351C1822B5EA002502ED /* main.m */; };
+		1D5135211822B5EA002502ED /* RCHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5135201822B5EA002502ED /* RCHAppDelegate.m */; };
+		1D5135231822B5EA002502ED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D5135221822B5EA002502ED /* Images.xcassets */; };
+		1D51352A1822B5EA002502ED /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5135291822B5EA002502ED /* XCTest.framework */; };
+		1D51352B1822B5EA002502ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5135101822B5EA002502ED /* Foundation.framework */; };
+		1D51352C1822B5EA002502ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D5135141822B5EA002502ED /* UIKit.framework */; };
+		1D5135341822B5EA002502ED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D5135321822B5EA002502ED /* InfoPlist.strings */; };
+		1D5135361822B5EA002502ED /* RCHBackboardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5135351822B5EA002502ED /* RCHBackboardTests.m */; };
+		1D51354F1822B642002502ED /* RCHBackBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5135421822B642002502ED /* RCHBackBoard.m */; };
+		1D5135511822B642002502ED /* RCHBackboardContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5135471822B642002502ED /* RCHBackboardContainerViewController.m */; };
+		1D5135521822B642002502ED /* RCHBackboardDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5135491822B642002502ED /* RCHBackboardDraw.m */; };
+		1D5135531822B642002502ED /* RCHBackBoardGestureControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D51354B1822B642002502ED /* RCHBackBoardGestureControl.m */; };
+		1D5135541822B642002502ED /* RCHBackboardShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D51354D1822B642002502ED /* RCHBackboardShadow.m */; };
+		1D61593F1824086100D07A4A /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D61593D1824086100D07A4A /* MenuViewController.m */; };
+		1D6159401824086100D07A4A /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D61593E1824086100D07A4A /* MenuViewController.xib */; };
+		1D615949182409E100D07A4A /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D615947182409E100D07A4A /* HomeViewController.m */; };
+		1D61594A182409E100D07A4A /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D615948182409E100D07A4A /* HomeViewController.xib */; };
+		1D61594D18240FC100D07A4A /* RCHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D61594C18240FC100D07A4A /* RCHViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1D51352D1822B5EA002502ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1D5135051822B5EA002502ED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D51350C1822B5EA002502ED;
+			remoteInfo = RCHBackboard;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1D51350D1822B5EA002502ED /* RCHBackboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RCHBackboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D5135101822B5EA002502ED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D5135121822B5EA002502ED /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1D5135141822B5EA002502ED /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1D5135181822B5EA002502ED /* RCHBackboard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RCHBackboard-Info.plist"; sourceTree = "<group>"; };
+		1D51351A1822B5EA002502ED /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1D51351C1822B5EA002502ED /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1D51351E1822B5EA002502ED /* RCHBackboard-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RCHBackboard-Prefix.pch"; sourceTree = "<group>"; };
+		1D51351F1822B5EA002502ED /* RCHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCHAppDelegate.h; sourceTree = "<group>"; };
+		1D5135201822B5EA002502ED /* RCHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCHAppDelegate.m; sourceTree = "<group>"; };
+		1D5135221822B5EA002502ED /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		1D5135281822B5EA002502ED /* RCHBackboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RCHBackboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D5135291822B5EA002502ED /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		1D5135311822B5EA002502ED /* RCHBackboardTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RCHBackboardTests-Info.plist"; sourceTree = "<group>"; };
+		1D5135331822B5EA002502ED /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1D5135351822B5EA002502ED /* RCHBackboardTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCHBackboardTests.m; sourceTree = "<group>"; };
+		1D5135411822B642002502ED /* RCHBackBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCHBackBoard.h; sourceTree = "<group>"; };
+		1D5135421822B642002502ED /* RCHBackBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCHBackBoard.m; sourceTree = "<group>"; };
+		1D5135461822B642002502ED /* RCHBackboardContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCHBackboardContainerViewController.h; sourceTree = "<group>"; };
+		1D5135471822B642002502ED /* RCHBackboardContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCHBackboardContainerViewController.m; sourceTree = "<group>"; };
+		1D5135481822B642002502ED /* RCHBackboardDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCHBackboardDraw.h; sourceTree = "<group>"; };
+		1D5135491822B642002502ED /* RCHBackboardDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCHBackboardDraw.m; sourceTree = "<group>"; };
+		1D51354A1822B642002502ED /* RCHBackBoardGestureControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCHBackBoardGestureControl.h; sourceTree = "<group>"; };
+		1D51354B1822B642002502ED /* RCHBackBoardGestureControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCHBackBoardGestureControl.m; sourceTree = "<group>"; };
+		1D51354C1822B642002502ED /* RCHBackboardShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCHBackboardShadow.h; sourceTree = "<group>"; };
+		1D51354D1822B642002502ED /* RCHBackboardShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCHBackboardShadow.m; sourceTree = "<group>"; };
+		1D51354E1822B642002502ED /* RCHBackBoardInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCHBackBoardInterface.h; sourceTree = "<group>"; };
+		1D61593C1824086100D07A4A /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		1D61593D1824086100D07A4A /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		1D61593E1824086100D07A4A /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
+		1D615946182409E100D07A4A /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		1D615947182409E100D07A4A /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		1D615948182409E100D07A4A /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		1D61594B18240FC100D07A4A /* RCHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCHViewController.h; sourceTree = "<group>"; };
+		1D61594C18240FC100D07A4A /* RCHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCHViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D51350A1822B5EA002502ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D5135131822B5EA002502ED /* CoreGraphics.framework in Frameworks */,
+				1D5135151822B5EA002502ED /* UIKit.framework in Frameworks */,
+				1D5135111822B5EA002502ED /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1D5135251822B5EA002502ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D51352A1822B5EA002502ED /* XCTest.framework in Frameworks */,
+				1D51352C1822B5EA002502ED /* UIKit.framework in Frameworks */,
+				1D51352B1822B5EA002502ED /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1D5135041822B5EA002502ED = {
+			isa = PBXGroup;
+			children = (
+				1D5135161822B5EA002502ED /* RCHBackboard */,
+				1D51352F1822B5EA002502ED /* RCHBackboardTests */,
+				1D51350F1822B5EA002502ED /* Frameworks */,
+				1D51350E1822B5EA002502ED /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1D51350E1822B5EA002502ED /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D51350D1822B5EA002502ED /* RCHBackboard.app */,
+				1D5135281822B5EA002502ED /* RCHBackboardTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1D51350F1822B5EA002502ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1D5135101822B5EA002502ED /* Foundation.framework */,
+				1D5135121822B5EA002502ED /* CoreGraphics.framework */,
+				1D5135141822B5EA002502ED /* UIKit.framework */,
+				1D5135291822B5EA002502ED /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1D5135161822B5EA002502ED /* RCHBackboard */ = {
+			isa = PBXGroup;
+			children = (
+				1D51351F1822B5EA002502ED /* RCHAppDelegate.h */,
+				1D5135201822B5EA002502ED /* RCHAppDelegate.m */,
+				1D61594B18240FC100D07A4A /* RCHViewController.h */,
+				1D61594C18240FC100D07A4A /* RCHViewController.m */,
+				1D6159361824084800D07A4A /* ViewControllers */,
+				1D51353F1822B618002502ED /* RCHBackboard */,
+				1D5135221822B5EA002502ED /* Images.xcassets */,
+				1D5135171822B5EA002502ED /* Supporting Files */,
+			);
+			path = RCHBackboard;
+			sourceTree = "<group>";
+		};
+		1D5135171822B5EA002502ED /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1D5135181822B5EA002502ED /* RCHBackboard-Info.plist */,
+				1D5135191822B5EA002502ED /* InfoPlist.strings */,
+				1D51351C1822B5EA002502ED /* main.m */,
+				1D51351E1822B5EA002502ED /* RCHBackboard-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1D51352F1822B5EA002502ED /* RCHBackboardTests */ = {
+			isa = PBXGroup;
+			children = (
+				1D5135351822B5EA002502ED /* RCHBackboardTests.m */,
+				1D5135301822B5EA002502ED /* Supporting Files */,
+			);
+			path = RCHBackboardTests;
+			sourceTree = "<group>";
+		};
+		1D5135301822B5EA002502ED /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1D5135311822B5EA002502ED /* RCHBackboardTests-Info.plist */,
+				1D5135321822B5EA002502ED /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1D51353F1822B618002502ED /* RCHBackboard */ = {
+			isa = PBXGroup;
+			children = (
+				1D5135401822B642002502ED /* Core */,
+				1D5135451822B642002502ED /* Helpers */,
+				1D51354E1822B642002502ED /* RCHBackBoardInterface.h */,
+			);
+			path = RCHBackboard;
+			sourceTree = "<group>";
+		};
+		1D5135401822B642002502ED /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				1D5135411822B642002502ED /* RCHBackBoard.h */,
+				1D5135421822B642002502ED /* RCHBackBoard.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		1D5135451822B642002502ED /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1D5135461822B642002502ED /* RCHBackboardContainerViewController.h */,
+				1D5135471822B642002502ED /* RCHBackboardContainerViewController.m */,
+				1D5135481822B642002502ED /* RCHBackboardDraw.h */,
+				1D5135491822B642002502ED /* RCHBackboardDraw.m */,
+				1D51354A1822B642002502ED /* RCHBackBoardGestureControl.h */,
+				1D51354B1822B642002502ED /* RCHBackBoardGestureControl.m */,
+				1D51354C1822B642002502ED /* RCHBackboardShadow.h */,
+				1D51354D1822B642002502ED /* RCHBackboardShadow.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		1D6159361824084800D07A4A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1D615946182409E100D07A4A /* HomeViewController.h */,
+				1D615947182409E100D07A4A /* HomeViewController.m */,
+				1D615948182409E100D07A4A /* HomeViewController.xib */,
+				1D61593C1824086100D07A4A /* MenuViewController.h */,
+				1D61593D1824086100D07A4A /* MenuViewController.m */,
+				1D61593E1824086100D07A4A /* MenuViewController.xib */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D51350C1822B5EA002502ED /* RCHBackboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D5135391822B5EA002502ED /* Build configuration list for PBXNativeTarget "RCHBackboard" */;
+			buildPhases = (
+				1D5135091822B5EA002502ED /* Sources */,
+				1D51350A1822B5EA002502ED /* Frameworks */,
+				1D51350B1822B5EA002502ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RCHBackboard;
+			productName = RCHBackboard;
+			productReference = 1D51350D1822B5EA002502ED /* RCHBackboard.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1D5135271822B5EA002502ED /* RCHBackboardTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D51353C1822B5EA002502ED /* Build configuration list for PBXNativeTarget "RCHBackboardTests" */;
+			buildPhases = (
+				1D5135241822B5EA002502ED /* Sources */,
+				1D5135251822B5EA002502ED /* Frameworks */,
+				1D5135261822B5EA002502ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1D51352E1822B5EA002502ED /* PBXTargetDependency */,
+			);
+			name = RCHBackboardTests;
+			productName = RCHBackboardTests;
+			productReference = 1D5135281822B5EA002502ED /* RCHBackboardTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1D5135051822B5EA002502ED /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = RCH;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Robin Hayward";
+				TargetAttributes = {
+					1D5135271822B5EA002502ED = {
+						TestTargetID = 1D51350C1822B5EA002502ED;
+					};
+				};
+			};
+			buildConfigurationList = 1D5135081822B5EA002502ED /* Build configuration list for PBXProject "RCHBackboard" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1D5135041822B5EA002502ED;
+			productRefGroup = 1D51350E1822B5EA002502ED /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D51350C1822B5EA002502ED /* RCHBackboard */,
+				1D5135271822B5EA002502ED /* RCHBackboardTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D51350B1822B5EA002502ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D51351B1822B5EA002502ED /* InfoPlist.strings in Resources */,
+				1D6159401824086100D07A4A /* MenuViewController.xib in Resources */,
+				1D5135231822B5EA002502ED /* Images.xcassets in Resources */,
+				1D61594A182409E100D07A4A /* HomeViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1D5135261822B5EA002502ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D5135341822B5EA002502ED /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D5135091822B5EA002502ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D61594D18240FC100D07A4A /* RCHViewController.m in Sources */,
+				1D51354F1822B642002502ED /* RCHBackBoard.m in Sources */,
+				1D5135531822B642002502ED /* RCHBackBoardGestureControl.m in Sources */,
+				1D5135211822B5EA002502ED /* RCHAppDelegate.m in Sources */,
+				1D61593F1824086100D07A4A /* MenuViewController.m in Sources */,
+				1D5135541822B642002502ED /* RCHBackboardShadow.m in Sources */,
+				1D5135511822B642002502ED /* RCHBackboardContainerViewController.m in Sources */,
+				1D51351D1822B5EA002502ED /* main.m in Sources */,
+				1D5135521822B642002502ED /* RCHBackboardDraw.m in Sources */,
+				1D615949182409E100D07A4A /* HomeViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1D5135241822B5EA002502ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D5135361822B5EA002502ED /* RCHBackboardTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1D51352E1822B5EA002502ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1D51350C1822B5EA002502ED /* RCHBackboard */;
+			targetProxy = 1D51352D1822B5EA002502ED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1D5135191822B5EA002502ED /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1D51351A1822B5EA002502ED /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1D5135321822B5EA002502ED /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1D5135331822B5EA002502ED /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1D5135371822B5EA002502ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1D5135381822B5EA002502ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1D51353A1822B5EA002502ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RCHBackboard/RCHBackboard-Prefix.pch";
+				INFOPLIST_FILE = "RCHBackboard/RCHBackboard-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1D51353B1822B5EA002502ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RCHBackboard/RCHBackboard-Prefix.pch";
+				INFOPLIST_FILE = "RCHBackboard/RCHBackboard-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		1D51353D1822B5EA002502ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RCHBackboard.app/RCHBackboard";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RCHBackboard/RCHBackboard-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "RCHBackboardTests/RCHBackboardTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		1D51353E1822B5EA002502ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RCHBackboard.app/RCHBackboard";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RCHBackboard/RCHBackboard-Prefix.pch";
+				INFOPLIST_FILE = "RCHBackboardTests/RCHBackboardTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D5135081822B5EA002502ED /* Build configuration list for PBXProject "RCHBackboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D5135371822B5EA002502ED /* Debug */,
+				1D5135381822B5EA002502ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1D5135391822B5EA002502ED /* Build configuration list for PBXNativeTarget "RCHBackboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D51353A1822B5EA002502ED /* Debug */,
+				1D51353B1822B5EA002502ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1D51353C1822B5EA002502ED /* Build configuration list for PBXNativeTarget "RCHBackboardTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D51353D1822B5EA002502ED /* Debug */,
+				1D51353E1822B5EA002502ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1D5135051822B5EA002502ED /* Project object */;
+}
