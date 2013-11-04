@@ -27,25 +27,21 @@
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   
   // Backboards require a container view controller to maniuplate the views so we'll make the that the root of the application
-  RCHBackboardContainerViewController *containerViewController = [[RCHBackboardContainerViewController alloc] initWithNibName:nil bundle:nil];
+  UIViewController *containerViewController = [[UIViewController alloc] initWithNibName:nil bundle:nil];
   
-  // Create a typical view controller stack
-  HomeViewController *homeViewController = [[HomeViewController alloc] initWithNibName:nil bundle:nil];
-  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
+  // Create a typical view controller stack however you need it
+  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[HomeViewController alloc] initWithNibName:nil bundle:nil]];
   
-  // Add our view controller stack as the rootViewController of the container
-  [containerViewController setRootViewController:navigationController];
-  
-  // Create a backboard with the standard init method if you wish to reference it directly and pass it around
+  // Create a view controller you wish to show for each backboard, this could be a navigation menu or pretty much anything you like
   UIViewController *menu = [[MenuViewController alloc] initWithNibName:nil bundle:nil];
   
-  // Optionally use the class method to create multiple backboards and present/dismiss them by name when required
-  [RCHBackboard setupWithName:@"top" containerViewController:containerViewController viewController:menu orientation:RCHBackboardOrientationTop width:50.0f];
-  [RCHBackboard setupWithName:@"left" containerViewController:containerViewController viewController:menu orientation:RCHBackboardOrientationLeft width:100.0f];
-  [RCHBackboard setupWithName:@"right" containerViewController:containerViewController viewController:menu orientation:RCHBackboardOrientationRight width:260.0f];
-  [RCHBackboard setupWithName:@"bottom" containerViewController:containerViewController viewController:menu orientation:RCHBackboardOrientationBottom width:400.0f];
+  // Optionally use this class method to create multiple backboards and present/dismiss them by name when required
+  [RCHBackboard setupWithName:@"top" container:containerViewController root:navigationController backboard:menu orientation:RCHBackboardOrientationTop width:50];
+  [RCHBackboard setupWithName:@"left" container:containerViewController root:navigationController backboard:menu orientation:RCHBackboardOrientationLeft width:150];
+  [RCHBackboard setupWithName:@"bottom" container:containerViewController root:navigationController backboard:menu orientation:RCHBackboardOrientationBottom width:350];
+  [RCHBackboard setupWithName:@"right" container:containerViewController root:navigationController backboard:menu orientation:RCHBackboardOrientationRight width:250];
 
-  // We're done, lift the curtains and start the show
+  // We're done, lift the curtains and start the show!
   [_window setRootViewController:containerViewController];
   [_window makeKeyAndVisible];
   return YES;

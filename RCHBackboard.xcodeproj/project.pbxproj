@@ -20,7 +20,6 @@
 		1D5135341822B5EA002502ED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D5135321822B5EA002502ED /* InfoPlist.strings */; };
 		1D5135361822B5EA002502ED /* RCHBackboardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5135351822B5EA002502ED /* RCHBackboardTests.m */; };
 		1D51354F1822B642002502ED /* RCHBackboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5135421822B642002502ED /* RCHBackboard.m */; };
-		1D5135511822B642002502ED /* RCHBackboardContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5135471822B642002502ED /* RCHBackboardContainerViewController.m */; };
 		1D5135521822B642002502ED /* RCHBackboardDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5135491822B642002502ED /* RCHBackboardDraw.m */; };
 		1D5135531822B642002502ED /* RCHBackboardGestureControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D51354B1822B642002502ED /* RCHBackboardGestureControl.m */; };
 		1D5135541822B642002502ED /* RCHBackboardShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D51354D1822B642002502ED /* RCHBackboardShadow.m */; };
@@ -60,8 +59,6 @@
 		1D5135351822B5EA002502ED /* RCHBackboardTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCHBackboardTests.m; sourceTree = "<group>"; };
 		1D5135411822B642002502ED /* RCHBackboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCHBackboard.h; sourceTree = "<group>"; };
 		1D5135421822B642002502ED /* RCHBackboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCHBackboard.m; sourceTree = "<group>"; };
-		1D5135461822B642002502ED /* RCHBackboardContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCHBackboardContainerViewController.h; sourceTree = "<group>"; };
-		1D5135471822B642002502ED /* RCHBackboardContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCHBackboardContainerViewController.m; sourceTree = "<group>"; };
 		1D5135481822B642002502ED /* RCHBackboardDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCHBackboardDraw.h; sourceTree = "<group>"; };
 		1D5135491822B642002502ED /* RCHBackboardDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCHBackboardDraw.m; sourceTree = "<group>"; };
 		1D51354A1822B642002502ED /* RCHBackboardGestureControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCHBackboardGestureControl.h; sourceTree = "<group>"; };
@@ -197,8 +194,6 @@
 		1D5135451822B642002502ED /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				1D5135461822B642002502ED /* RCHBackboardContainerViewController.h */,
-				1D5135471822B642002502ED /* RCHBackboardContainerViewController.m */,
 				1D5135481822B642002502ED /* RCHBackboardDraw.h */,
 				1D5135491822B642002502ED /* RCHBackboardDraw.m */,
 				1D51354A1822B642002502ED /* RCHBackboardGestureControl.h */,
@@ -326,7 +321,6 @@
 				1D5135211822B5EA002502ED /* RCHAppDelegate.m in Sources */,
 				1D61593F1824086100D07A4A /* MenuViewController.m in Sources */,
 				1D5135541822B642002502ED /* RCHBackboardShadow.m in Sources */,
-				1D5135511822B642002502ED /* RCHBackboardContainerViewController.m in Sources */,
 				1D51351D1822B5EA002502ED /* main.m in Sources */,
 				1D5135521822B642002502ED /* RCHBackboardDraw.m in Sources */,
 				1D615949182409E100D07A4A /* HomeViewController.m in Sources */,

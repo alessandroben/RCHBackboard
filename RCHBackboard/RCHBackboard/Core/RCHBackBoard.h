@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
-#import "RCHBackboardGestureControl.h"
-#import "RCHBackboardContainerViewController.h"
 
 /**
 
@@ -40,10 +38,8 @@ extern NSString *const RCHBackboardDidDismissNotification;
 
 @class RCHBackboardShadow;
 
-@interface RCHBackboard : NSObject <RCHBackboardGestureControlDelegate>
+@interface RCHBackboard : NSObject
 
-@property (strong, nonatomic) RCHBackboardContainerViewController *containerViewController;
-@property (strong, nonatomic) UIViewController *viewController;
 @property (strong, nonatomic) NSString *name;
 @property (assign, nonatomic) RCHBackboardState state;
 @property (assign, nonatomic) RCHBackboardOrientation orientation;
@@ -63,7 +59,7 @@ extern NSString *const RCHBackboardDidDismissNotification;
  @param width How much of the backboard should be visible once presented
  @return A new instance of an RCHBackboard
  */
-- (id)initWithName:(NSString *)name containerViewController:(RCHBackboardContainerViewController *)containerViewController viewController:(UIViewController *)viewController orientation:(RCHBackboardOrientation)orientation width:(CGFloat)width;
+- (id)initWithName:(NSString *)name container:(UIViewController *)container root:(UIViewController *)root backboard:(UIViewController *)backboard orientation:(RCHBackboardOrientation)orientation width:(CGFloat)width;
 
 /**
  Animates the backboard on screen from beneath
@@ -81,7 +77,7 @@ extern NSString *const RCHBackboardDidDismissNotification;
  A shorter conveinience method to initialize a new backboard without returning the instance
  @see `initWithName:containerViewController:viewController:orientation:width`
  */
-+ (void)setupWithName:(NSString *)name containerViewController:(RCHBackboardContainerViewController *)rootViewController viewController:(UIViewController *)viewController orientation:(RCHBackboardOrientation)orientation width:(CGFloat)width;
++ (void)setupWithName:(NSString *)name container:(UIViewController *)container root:(UIViewController *)root backboard:(UIViewController *)backboard orientation:(RCHBackboardOrientation)orientation width:(CGFloat)width;
 
 /**
  Calls dismiss on all known backboards
