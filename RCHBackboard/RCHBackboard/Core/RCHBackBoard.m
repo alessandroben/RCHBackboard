@@ -81,6 +81,8 @@ static NSMutableDictionary *__backboards = nil;
     NSAssert(width > 0, @"Width must be greater than zero to present the backboard");
     NSAssert(![__backboards objectForKey:name], @"Each backboard should have a unique name");
     
+    [__backboards setObject:self forKey:name];
+    
     self.name = name;
     self.width = width;
     self.orientation = orientation;
@@ -90,8 +92,9 @@ static NSMutableDictionary *__backboards = nil;
     self.shadowWidth = RCH_DEFAULT_SHADOW_WIDTH;
     self.gestureControl = [[RCHBackboardGestureControl alloc] initWithDelegate:self];
     
-    [__backboards setObject:self forKey:name];
+    
     [self notifications];
+    [self addBackboardToContainerForPresentation];
   }
   return self;
 }
@@ -148,10 +151,6 @@ static NSMutableDictionary *__backboards = nil;
   
   [[NSNotificationCenter defaultCenter] postNotificationName:RCHBackboardWillPresentNotification object:self userInfo:@{@"Name": self.name}];
   
-  [_containerViewController.backboardViewController addChildViewController:_viewController];
-  [_containerViewController.backboardViewController.view addSubview:_viewController.view];
-  [self setupShadow];
-  
   [UIView animateWithDuration:_animationDuration animations:^{
     
     CGRect rootViewFrame = _containerViewController.rootViewController.view.frame;
@@ -182,14 +181,21 @@ static NSMutableDictionary *__backboards = nil;
   }];
 }
 
+- (void)addBackboardToContainerForPresentation
+{
+  [_containerViewController.backboardViewController addChildViewController:_viewController];
+  [_containerViewController.backboardViewController.view addSubview:_viewController.view];
+  [self setupShadow];
+}
+
 #pragma mark - Dismissing
 
 - (void)dismissWithCompletion:(void (^)(BOOL finished))completion
 {
   if (!self.isOpen) return;
-
-  [[NSNotificationCenter defaultCenter] postNotificationName:RCHBackboardWillDismissNotification object:self userInfo:@{@"Name": self.name}];
   
+  [[NSNotificationCenter defaultCenter] postNotificationName:RCHBackboardWillDismissNotification object:self userInfo:@{@"Name": self.name}];
+  [self addBackboardToContainerForPresentation];
   [UIView animateWithDuration:self.animationDuration animations:^{
     
     CGRect rootViewFrame = self.containerViewController.rootViewController.view.frame;
