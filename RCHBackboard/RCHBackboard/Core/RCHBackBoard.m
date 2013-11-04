@@ -37,6 +37,18 @@ static NSMutableDictionary *__backboards = nil;
   });
 }
 
++ (void)setupWithName:(NSString *)name containerViewController:(RCHBackboardContainerViewController *)containerViewController viewController:(UIViewController *)viewController orientation:(RCHBackboardOrientation)orientation width:(CGFloat)width
+{
+  __unused id backboard  = [[RCHBackboard alloc] initWithName:name containerViewController:containerViewController viewController:viewController orientation:orientation width:width];
+}
+
++ (void)dismiss
+{
+  for (RCHBackboard *backboard in [__backboards allValues]) {
+    [backboard dismissWithCompletion:nil];
+  }
+}
+
 + (RCHBackboard *)backboardWithName:(NSString *)name
 {
   return [__backboards objectForKey:name];

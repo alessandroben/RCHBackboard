@@ -38,13 +38,13 @@
 
 /**
  @param name A unique name to identifier this board with if your app has more than one
- @param rootViewController The controller that our backboard will be manipulating
- @oaram viewController The view controller to present
+ @param containerViewController The controller that our backboard will be manipulating
+ @param viewController The view controller to present
  @param orientation The orientation of the backboard, Left, Right, Top or Bottom
  @param width How much of the backboard should be visible once presented
  @return A new instance of an RCHBackboard
  */
-- (id)initWithName:(NSString *)name containerViewController:(RCHBackboardContainerViewController *)rootViewController viewController:(UIViewController *)viewController orientation:(RCHBackboardOrientation)orientation width:(CGFloat)width;
+- (id)initWithName:(NSString *)name containerViewController:(RCHBackboardContainerViewController *)containerViewController viewController:(UIViewController *)viewController orientation:(RCHBackboardOrientation)orientation width:(CGFloat)width;
 
 /**
  Animates the backboard on screen from beneath
@@ -58,9 +58,33 @@
  */
 - (void)dismissWithCompletion:(void (^)(BOOL finished))completion;
 
+/**
+ A shorter conveinience method to initialize a new backboard without returning the instance
+ @see `initWithName:containerViewController:viewController:orientation:width`
+ */
++ (void)setupWithName:(NSString *)name containerViewController:(RCHBackboardContainerViewController *)rootViewController viewController:(UIViewController *)viewController orientation:(RCHBackboardOrientation)orientation width:(CGFloat)width;
 
+/**
+ Calls dismiss on all known backboards
+ */
++ (void)dismiss;
+
+/**
+ @param name The name of a backboard already created
+ @return A backboard instance if one exists for the given name
+ */
 + (RCHBackboard *)backboardWithName:(NSString *)name;
+
+/**
+ @param name The name of a backboard already created
+ @param completion Optional completion block called after the presentation animation has finished
+ */
 + (void)presentBackboardWithName:(NSString *)name completion:(void (^)(BOOL finished))completion;
+
+/**
+ @param name The name of a backboard already created
+ @param completion Optional completion block called after the dismiss animation has finished
+ */
 + (void)dismissBackboardWithName:(NSString *)name completion:(void (^)(BOOL finished))completion;
 
 @end

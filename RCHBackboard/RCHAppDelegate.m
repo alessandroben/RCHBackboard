@@ -36,12 +36,14 @@
   // Add our view controller stack as the rootViewController of the container
   [containerViewController setRootViewController:navigationController];
   
-  // Create a backboard
-  UIViewController *right = [[MenuViewController alloc] initWithNibName:nil bundle:nil];
-  _backboard = [[RCHBackboard alloc] initWithName:@"right" containerViewController:containerViewController viewController:right orientation:RCHBackboardOrientationRight width:260.0f];
+  // Create a backboard with the standard init method if you wish to reference it directly and pass it around
+  UIViewController *menu = [[MenuViewController alloc] initWithNibName:nil bundle:nil];
+  _backboard = [[RCHBackboard alloc] initWithName:@"right" containerViewController:containerViewController viewController:menu orientation:RCHBackboardOrientationRight width:260.0f];
   
-  // We don't want to use a singleton so make sure each view controller has a reference to any required backboard(s)
-  [homeViewController setRightBackboard:_backboard];
+  // Optionally use the class method to create your backboards and present/dismiss them by name when required
+  [RCHBackboard setupWithName:@"left" containerViewController:containerViewController viewController:menu orientation:RCHBackboardOrientationLeft width:100.0f];
+  [RCHBackboard setupWithName:@"top" containerViewController:containerViewController viewController:menu orientation:RCHBackboardOrientationTop width:50.0f];
+  [RCHBackboard setupWithName:@"bottom" containerViewController:containerViewController viewController:menu orientation:RCHBackboardOrientationBottom width:400.0f];
 
   // We're done, lift the curtains and start the show
   [_window setRootViewController:containerViewController];

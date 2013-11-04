@@ -12,22 +12,22 @@
 
 - (IBAction)topButtonAction:(id)sender
 {
-  [self.topBackboard presentWithCompletion:nil];
+  [RCHBackboard presentBackboardWithName:@"top" completion:nil];
 }
 
 - (IBAction)leftButtonAction:(id)sender
 {
-  [self.leftBackboard presentWithCompletion:nil];
+  [RCHBackboard presentBackboardWithName:@"left" completion:nil];
 }
 
 - (IBAction)rightButtonAction:(id)sender
 {
-  [self.rightBackboard presentWithCompletion:nil];
+  [RCHBackboard presentBackboardWithName:@"right" completion:nil];
 }
 
 - (IBAction)bottomButtonAction:(id)sender
 {
-  [self.bottomBackboard presentWithCompletion:nil];
+  [RCHBackboard presentBackboardWithName:@"bottom" completion:nil];
 }
 
 @end
