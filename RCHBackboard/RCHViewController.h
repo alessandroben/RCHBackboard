@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RCHBackBoard.h"
+#import "RCHBackboard.h"
 
 @interface RCHViewController : UIViewController
 
-@property (strong, nonatomic) RCHBackBoard *backboard;
+@property (strong, nonatomic) RCHBackboard *backboard;
 
 @end

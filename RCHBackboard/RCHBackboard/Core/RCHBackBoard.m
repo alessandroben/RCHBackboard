@@ -1,120 +1,143 @@
 //
-//  RCHBackBoard.m
+//  RCHBackboard.m
 //  Backboard
 //
 //  Created by Rob Hayward on 19/06/2013.
 //  Copyright (c) 2013 Robin Hayward. All rights reserved.
 //
 
-#import "RCHBackBoard.h"
-#import "RCHBackBoard.h"
-#import "RCHBackboardContainerViewController.h"
-#import "RCHBackBoardGestureControl.h"
+#import "RCHBackboard.h"
+#import "RCHBackboard.h"
+#import "RCHBackboardGestureControl.h"
 #import "RCHBackboardShadow.h"
+#import "RCHBackboardContainerViewController.h"
 
-NSString *const RCHBackBoardWillPresentNotification = @"RCHBackBoardWillPresentNotification";
-NSString *const RCHBackBoardDidPresentNotification = @"RCHBackBoardDidPresentNotification";
-NSString *const RCHBackBoardWillDismissNotification = @"RCHBackBoardWillDismissNotification";
-NSString *const RCHBackBoardDidDismissNotification = @"RCHBackBoardDidDismissNotification";
+NSString *const RCHBackboardWillPresentNotification = @"RCHBackboardWillPresentNotification";
+NSString *const RCHBackboardDidPresentNotification = @"RCHBackboardDidPresentNotification";
+NSString *const RCHBackboardWillDismissNotification = @"RCHBackboardWillDismissNotification";
+NSString *const RCHBackboardDidDismissNotification = @"RCHBackboardDidDismissNotification";
 
-@interface RCHBackBoard ()
+static NSMutableDictionary *__backboards = nil;
+
+@interface RCHBackboard ()
 
 @property (strong, nonatomic) NSMutableDictionary *items;
-@property (strong, nonatomic) RCHBackBoardGestureControl *gestureControl;
-
+@property (strong, nonatomic) RCHBackboardGestureControl *gestureControl;
 @property (assign, nonatomic) BOOL isOpen;
 
 @end
 
-@implementation RCHBackBoard
+@implementation RCHBackboard
 
-- (id)initWithName:(NSString *)name rootViewController:(UIViewController *)rootViewController viewController:(UIViewController<RCHBackBoardViewController> *)viewController orientation:(RCHBackBoardOrientation)orientation width:(CGFloat)width
++ (void)initialize
+{
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    __backboards = [NSMutableDictionary dictionaryWithCapacity:0];
+  });
+}
+
++ (RCHBackboard *)backboardWithName:(NSString *)name
+{
+  return [__backboards objectForKey:name];
+}
+
++ (void)presentBackboardWithName:(NSString *)name completion:(void (^)(BOOL))completion
+{
+  RCHBackboard *backboard = [__backboards objectForKey:name];
+  if (!backboard) return;
+  [backboard presentWithCompletion:completion];
+}
+
++ (void)dismissBackboardWithName:(NSString *)name completion:(void (^)(BOOL))completion
+{
+  RCHBackboard *backboard = [__backboards objectForKey:name];
+  if (!backboard) return;
+  [backboard dismissWithCompletion:completion];
+}
+
+- (id)initWithName:(NSString *)name containerViewController:(RCHBackboardContainerViewController *)containerViewController viewController:(UIViewController *)viewController orientation:(RCHBackboardOrientation)orientation width:(CGFloat)width
 {
   self = [super init];
   if (self) {
-    
     NSParameterAssert(name);
-    NSParameterAssert(rootViewController);
+    NSParameterAssert(containerViewController);
     NSParameterAssert(viewController);
+    NSAssert(width > 0, @"Width must be greater than zero to present the backboard");
+    
+    NSAssert(![__backboards objectForKey:name], @"Each backboard should have a unique name");
+    [__backboards setObject:self forKey:name];
+    
     self.name = name;
     self.width = width;
     self.orientation = orientation;
     self.viewController = viewController;
-    [self.containerViewController setRootViewController:rootViewController];
-    [_viewController setBackboard:self];
+    
+    self.containerViewController = containerViewController;
     
     self.animationDuration = RCH_DEFAULT_ANIMATION_DURATION;
     self.shadowWidth = RCH_DEFAULT_SHADOW_WIDTH;
+    self.gestureControl = [[RCHBackboardGestureControl alloc] initWithDelegate:self];
     
     [self notifications];
-    self.gestureControl = [[RCHBackBoardGestureControl alloc] initWithDelegate:self];
   }
   return self;
-}
-
-- (UIViewController<RCHBackBoardContainerViewController> *)containerViewController
-{
-  if (_containerViewController != nil) { return _containerViewController; }
-  self.containerViewController = [[RCHBackboardContainerViewController alloc] initWithNibName:nil bundle:nil];
-  return _containerViewController;
 }
 
 #pragma mark - Notifications
 
 - (void)notifications
 {
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willPresent:) name:RCHBackBoardWillPresentNotification object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didPresent:) name:RCHBackBoardDidPresentNotification object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willDismiss:) name:RCHBackBoardWillDismissNotification object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDismiss:) name:RCHBackBoardDidDismissNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willPresent:) name:RCHBackboardWillPresentNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didPresent:) name:RCHBackboardDidPresentNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willDismiss:) name:RCHBackboardWillDismissNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDismiss:) name:RCHBackboardDidDismissNotification object:nil];
 }
 
 - (void)willPresent:(NSNotification *)notification
 {
   if (self != [notification object]) return;
-  self.state = RCHBackBoardStateOpening;
+  self.state = RCHBackboardStateOpening;
 }
 
 - (void)didPresent:(NSNotification *)notification
 {
   if (self != [notification object]) return;
-  self.state = RCHBackBoardStateOpen;
+  self.state = RCHBackboardStateOpen;
 }
 
 - (void)willDismiss:(NSNotification *)notification
 {
   if (self != [notification object]) return;
-  self.state = RCHBackBoardStateClosing;
+  self.state = RCHBackboardStateClosing;
 }
 
 - (void)didDismiss:(NSNotification *)notification
 {
   if (self != [notification object]) return;
-  self.state = RCHBackBoardStateClosed;
+  self.state = RCHBackboardStateClosed;
 }
 
 #pragma mark - Getters
 
 - (BOOL)isOpen
 {
-  if ((_state == RCHBackBoardStateOpen) || (_state == RCHBackBoardStateOpening)) {
+  if ((_state == RCHBackboardStateOpen) || (_state == RCHBackboardStateOpening)) {
     return YES;
   }
   return NO;
 }
 
-
 #pragma mark - Presenting
-#pragma mark
 
 - (void)presentWithCompletion:(void (^)(BOOL finished))completion
 {
   if (_isOpen) return;
   
-  [[NSNotificationCenter defaultCenter] postNotificationName:RCHBackBoardWillPresentNotification object:self userInfo:@{@"Name": self.name}];
+  [[NSNotificationCenter defaultCenter] postNotificationName:RCHBackboardWillPresentNotification object:self userInfo:@{@"Name": self.name}];
   
-  [self.containerViewController.backboardViewController addChildViewController:self.viewController];
-  [self.containerViewController.backboardViewController.view addSubview:self.viewController.view];
+  [_containerViewController.backboardViewController addChildViewController:_viewController];
+  [_containerViewController.backboardViewController.view addSubview:_viewController.view];
   [self setupShadow];
   [self setupGestures];
   
@@ -122,16 +145,16 @@ NSString *const RCHBackBoardDidDismissNotification = @"RCHBackBoardDidDismissNot
     
     CGRect rootViewFrame = self.containerViewController.rootViewController.view.frame;
     switch (self.orientation) {
-      case RCHBackBoardOrientationLeft:
+      case RCHBackboardOrientationLeft:
         rootViewFrame.origin.x += self.width;
         break;
-      case RCHBackBoardOrientationTop:
+      case RCHBackboardOrientationTop:
         rootViewFrame.origin.y += self.width;
         break;
-      case RCHBackBoardOrientationRight:
+      case RCHBackboardOrientationRight:
         rootViewFrame.origin.x -= self.width;
         break;
-      case RCHBackBoardOrientationBottom:
+      case RCHBackboardOrientationBottom:
         rootViewFrame.origin.y -= self.width;
         break;
     }
@@ -139,37 +162,35 @@ NSString *const RCHBackBoardDidDismissNotification = @"RCHBackBoardDidDismissNot
     
   } completion:^(BOOL finished){
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:RCHBackBoardDidPresentNotification object:self userInfo:@{@"Name": self.name}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:RCHBackboardDidPresentNotification object:self userInfo:@{@"Name": self.name}];
     
     if (completion) completion(finished);
     
   }];
 }
 
-
 #pragma mark - Dismissing
-#pragma mark
 
 - (void)dismissWithCompletion:(void (^)(BOOL finished))completion
 {
   if (!self.isOpen) return;
 
-  [[NSNotificationCenter defaultCenter] postNotificationName:RCHBackBoardWillDismissNotification object:self userInfo:@{@"Name": self.name}];
+  [[NSNotificationCenter defaultCenter] postNotificationName:RCHBackboardWillDismissNotification object:self userInfo:@{@"Name": self.name}];
   
   [UIView animateWithDuration:self.animationDuration animations:^{
     
     CGRect rootViewFrame = self.containerViewController.rootViewController.view.frame;
     switch (self.orientation) {
-      case RCHBackBoardOrientationLeft:
+      case RCHBackboardOrientationLeft:
         rootViewFrame.origin.x = 0;
         break;
-      case RCHBackBoardOrientationTop:
+      case RCHBackboardOrientationTop:
         rootViewFrame.origin.y = 0;
         break;
-      case RCHBackBoardOrientationRight:
+      case RCHBackboardOrientationRight:
         rootViewFrame.origin.x = 0;
         break;
-      case RCHBackBoardOrientationBottom:
+      case RCHBackboardOrientationBottom:
         rootViewFrame.origin.y = 0;
         break;
     }
@@ -181,7 +202,7 @@ NSString *const RCHBackBoardDidDismissNotification = @"RCHBackBoardDidDismissNot
     [self.viewController removeFromParentViewController];
     [self.shadow removeFromSuperview];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:RCHBackBoardDidDismissNotification object:self userInfo:@{@"Name": self.name}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:RCHBackboardDidDismissNotification object:self userInfo:@{@"Name": self.name}];
     
     if (completion) completion(finished);
   }];
@@ -197,28 +218,28 @@ NSString *const RCHBackBoardDidDismissNotification = @"RCHBackBoardDidDismissNot
   
   CGRect frame = _containerViewController.view.bounds;
   CGFloat shadowWidth = self.shadowWidth;
-  RCHBackBoardOrientation orientation = self.orientation;
+  RCHBackboardOrientation orientation = self.orientation;
   switch (orientation)
   {
-    case RCHBackBoardOrientationLeft:
+    case RCHBackboardOrientationLeft:
     {
       frame.origin.x = frame.origin.x - shadowWidth;
       frame.size.width = shadowWidth;
     }
       break;
-    case RCHBackBoardOrientationRight:
+    case RCHBackboardOrientationRight:
     {
       frame.origin.x = frame.size.width;
       frame.size.width = shadowWidth;
     }
       break;
-    case RCHBackBoardOrientationTop:
+    case RCHBackboardOrientationTop:
     {
       frame.origin.y = -shadowWidth;
       frame.size.height = shadowWidth;
     }
       break;
-    case RCHBackBoardOrientationBottom:
+    case RCHBackboardOrientationBottom:
     {
       frame.origin.y = frame.size.height;
       frame.size.height = shadowWidth;
@@ -244,13 +265,13 @@ NSString *const RCHBackBoardDidDismissNotification = @"RCHBackBoardDidDismissNot
 
 #pragma mark - GestureControlDelegate
 
-- (void)RCHBackBoardGestureTapReceived:(RCHBackBoardGestureControl *)gestureControl
+- (void)RCHBackboardGestureTapReceived:(RCHBackboardGestureControl *)gestureControl
 {
   [_gestureControl.view removeFromSuperview];
   [self dismissWithCompletion:nil];
 }
 
-- (void)RCHBackBoardGestureSwipeToCloseReceived:(RCHBackBoardGestureControl *)gestureControl
+- (void)RCHBackboardGestureSwipeToCloseReceived:(RCHBackboardGestureControl *)gestureControl
 {
   [_gestureControl.view removeFromSuperview];
   [self dismissWithCompletion:nil];
@@ -260,12 +281,13 @@ NSString *const RCHBackBoardDidDismissNotification = @"RCHBackBoardDidDismissNot
 
 - (void)tearDown
 {
-  self.viewController = nil;
-  self.containerViewController = nil;
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:RCHBackBoardWillPresentNotification object:nil];
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:RCHBackBoardDidPresentNotification object:nil];
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:RCHBackBoardWillDismissNotification object:nil];
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:RCHBackBoardDidDismissNotification object:nil];
+  _viewController = nil;
+  _containerViewController = nil;
+  [__backboards removeObjectForKey:_name];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:RCHBackboardWillPresentNotification object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:RCHBackboardDidPresentNotification object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:RCHBackboardWillDismissNotification object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:RCHBackboardDidDismissNotification object:nil];
 }
 
 

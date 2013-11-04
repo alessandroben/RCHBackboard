@@ -1,5 +1,5 @@
 //
-//  RCHBackBoardGestureControl.h
+//  RCHBackboardGestureControl.h
 //  BackboardMenu
 //
 //  Created by Rob Hayward on 25/06/2013.
@@ -7,27 +7,27 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RCHBackBoardInterface.h"
+#import "RCHBackboardInterface.h"
 
-@class RCHBackBoardGestureControl, RCHBackBoard;
+@class RCHBackboardGestureControl, RCHBackboard;
 
-@protocol RCHBackBoardGestureControlDelegate <NSObject>
+@protocol RCHBackboardGestureControlDelegate <NSObject>
 
-- (void)RCHBackBoardGestureTapReceived:(RCHBackBoardGestureControl *)gestureControl;
-- (void)RCHBackBoardGestureSwipeToCloseReceived:(RCHBackBoardGestureControl *)gestureControl;
+- (void)RCHBackboardGestureTapReceived:(RCHBackboardGestureControl *)gestureControl;
+- (void)RCHBackboardGestureSwipeToCloseReceived:(RCHBackboardGestureControl *)gestureControl;
 
 @end
 
-@interface RCHBackBoardGestureControl : NSObject
+@interface RCHBackboardGestureControl : NSObject
 
-@property (assign, nonatomic) id<RCHBackBoardGestureControlDelegate> delegate;
+@property (assign, nonatomic) id<RCHBackboardGestureControlDelegate> delegate;
 @property (strong, nonatomic) UIView *view;
 @property (assign, nonatomic) CGPoint panGestureStart;
 @property (assign, nonatomic) CGPoint panGestureTrack;
 @property (assign, nonatomic) CGPoint translatedPoint;
-@property (assign, nonatomic) RCHBackBoard *backboard;
+@property (assign, nonatomic) RCHBackboard *backboard;
 
-- (id)initWithDelegate:(id<RCHBackBoardGestureControlDelegate>)delegate;
+- (id)initWithDelegate:(id<RCHBackboardGestureControlDelegate>)delegate;
 
 - (void)reset;
 

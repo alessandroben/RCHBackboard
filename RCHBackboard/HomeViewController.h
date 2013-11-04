@@ -10,10 +10,10 @@
 
 @interface HomeViewController : RCHViewController
 
-@property (strong, nonatomic) RCHBackBoard *topBackboard;
-@property (strong, nonatomic) RCHBackBoard *leftBackboard;
-@property (strong, nonatomic) RCHBackBoard *rightBackboard;
-@property (strong, nonatomic) RCHBackBoard *bottomBackboard;
+@property (strong, nonatomic) RCHBackboard *topBackboard;
+@property (strong, nonatomic) RCHBackboard *leftBackboard;
+@property (strong, nonatomic) RCHBackboard *rightBackboard;
+@property (strong, nonatomic) RCHBackboard *bottomBackboard;
 
 @property (strong, nonatomic) IBOutlet UIButton *button;
 

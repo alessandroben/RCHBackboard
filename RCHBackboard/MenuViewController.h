@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RCHBackBoard.h"
+#import "RCHBackboard.h"
 
-@interface MenuViewController : UIViewController <RCHBackBoardViewController>
+@interface MenuViewController : UIViewController
 
-@property (weak, nonatomic) RCHBackBoard *backboard;
+@property (weak, nonatomic) RCHBackboard *backboard;
 
 - (IBAction)dismissButtonAction:(id)sender;
 

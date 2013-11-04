@@ -11,11 +11,11 @@
 #import "HomeViewController.h"
 #import "MenuViewController.h"
 
-#import "RCHBackBoard.h"
+#import "RCHBackboard.h"
 
 @interface RCHAppDelegate ()
 
-@property (strong, nonatomic) RCHBackBoard *backboard;
+@property (strong, nonatomic) RCHBackboard *backboard;
 
 @end
 
@@ -23,26 +23,30 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  // Create a standard window
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   
-  // Setup a typical view controller stack
+  // Backboards require a container view controller to maniuplate the views so we'll make the that the root of the application
+  RCHBackboardContainerViewController *containerViewController = [[RCHBackboardContainerViewController alloc] initWithNibName:nil bundle:nil];
+  
+  // Create a typical view controller stack
   HomeViewController *homeViewController = [[HomeViewController alloc] initWithNibName:nil bundle:nil];
   UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
-
+  
+  // Add our view controller stack as the rootViewController of the container
+  [containerViewController setRootViewController:navigationController];
+  
   // Create a backboard
-  UIViewController <RCHBackBoardViewController> *right = [[MenuViewController alloc] initWithNibName:nil bundle:nil];
-  self.backboard = [[RCHBackBoard alloc] initWithName:@"right" rootViewController:navigationController viewController:right orientation:RCHBackBoardOrientationRight width:260.0f];
+  UIViewController *right = [[MenuViewController alloc] initWithNibName:nil bundle:nil];
+  _backboard = [[RCHBackboard alloc] initWithName:@"right" containerViewController:containerViewController viewController:right orientation:RCHBackboardOrientationRight width:260.0f];
   
   // We don't want to use a singleton so make sure each view controller has a reference to any required backboard(s)
   [homeViewController setRightBackboard:_backboard];
-  
-  // Attach the backboard as the root view controller of the window
-  [_window setRootViewController:_backboard.containerViewController];
+
+  // We're done, lift the curtains and start the show
+  [_window setRootViewController:containerViewController];
   [_window makeKeyAndVisible];
-  
   return YES;
 }
-
-// TODO: Allow backboards to share the container view controller (rootViewController should be this)
 
 @end

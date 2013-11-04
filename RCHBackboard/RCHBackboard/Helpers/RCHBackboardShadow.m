@@ -11,7 +11,7 @@
 
 @implementation RCHBackboardShadow
 
-- (id)initWithFrame:(CGRect)frame andDirection:(RCHBackBoardOrientation)shadowOrientation
+- (id)initWithFrame:(CGRect)frame andDirection:(RCHBackboardOrientation)shadowOrientation
 {
   self = [super initWithFrame:frame];
   if (self)
@@ -37,24 +37,24 @@
   CGGradientRef gradient = [RCHBackboardDraw gradientWithColors:@[startColor, endColor] locations:nil];
   
   switch (_orientation) {
-    case RCHBackBoardOrientationLeft:
+    case RCHBackboardOrientationLeft:
     {
       endPoint = CGPointMake(rect.size.width, 0);
     }
       break;
-    case RCHBackBoardOrientationRight:
+    case RCHBackboardOrientationRight:
     {
       startPoint = CGPointMake(rect.size.width, 0);
       endPoint = CGPointMake(0, 0);
     }
       break;
-    case RCHBackBoardOrientationTop:
+    case RCHBackboardOrientationTop:
     {
       startPoint = CGPointMake(0, 0);
       endPoint = CGPointMake(0, rect.size.height);
     }
       break;
-    case RCHBackBoardOrientationBottom:
+    case RCHBackboardOrientationBottom:
     {
       startPoint = CGPointMake(0, rect.size.height);
       endPoint = CGPointMake(0, 0);

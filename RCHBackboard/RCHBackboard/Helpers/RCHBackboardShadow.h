@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RCHBackBoardInterface.h"
+#import "RCHBackboardInterface.h"
 
 @interface RCHBackboardShadow : UIView
 
-@property (readwrite, nonatomic) RCHBackBoardOrientation orientation;
+@property (readwrite, nonatomic) RCHBackboardOrientation orientation;
 @property (strong, nonatomic) UIColor *color;
 
-- (id)initWithFrame:(CGRect)frame andDirection:(RCHBackBoardOrientation)shadowOrientation;
+- (id)initWithFrame:(CGRect)frame andDirection:(RCHBackboardOrientation)shadowOrientation;
 
 @end

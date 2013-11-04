@@ -18,7 +18,7 @@
 
 - (void)dismissButtonAction:(id)sender
 {
-  [self.backboard dismissWithCompletion:nil];
+  [RCHBackboard dismissBackboardWithName:@"right" completion:nil];
 }
 
 @end

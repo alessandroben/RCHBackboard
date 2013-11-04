@@ -1,20 +1,20 @@
 //
-//  RCHBackBoardGestureControl.m
+//  RCHBackboardGestureControl.m
 //  BackboardMenu
 //
 //  Created by Rob Hayward on 25/06/2013.
 //  Copyright (c) 2013 Robin Hayward. All rights reserved.
 //
 
-#import "RCHBackBoardGestureControl.h"
-#import "RCHBackBoard.h"
+#import "RCHBackboardGestureControl.h"
+#import "RCHBackboard.h"
 
 typedef enum {
   RCHGestureAxisX = 0,
   RCHGestureAxisY
 } RCHGestureAxis;
 
-@interface RCHBackBoardGestureControl ()
+@interface RCHBackboardGestureControl ()
 
 @property (strong, nonatomic) UIView *contentView;
 @property (assign, nonatomic) BOOL dragThresholdReached;
@@ -22,9 +22,9 @@ typedef enum {
 @property (assign, nonatomic) BOOL isAnimating;
 @end
 
-@implementation RCHBackBoardGestureControl
+@implementation RCHBackboardGestureControl
 
-- (id)initWithDelegate:(id<RCHBackBoardGestureControlDelegate>)delegate
+- (id)initWithDelegate:(id<RCHBackboardGestureControlDelegate>)delegate
 {
   self = [super init];
   if (self) {
@@ -70,7 +70,7 @@ typedef enum {
 
 - (void)tapGesture:(UITapGestureRecognizer *)gesture
 {
-  [_delegate RCHBackBoardGestureTapReceived:self];
+  [_delegate RCHBackboardGestureTapReceived:self];
 }
 
 - (void)panGesture:(UIPanGestureRecognizer *)gesture
@@ -97,7 +97,7 @@ typedef enum {
   {
     if (_dragThresholdReached)
     {
-      [_delegate RCHBackBoardGestureSwipeToCloseReceived:self];
+      [_delegate RCHBackboardGestureSwipeToCloseReceived:self];
     }
     else
     {
@@ -113,40 +113,40 @@ typedef enum {
   _panGestureTrack = _translatedPoint;
 }
 
-- (BOOL)canDragForOrientation:(RCHBackBoardOrientation)orientation
+- (BOOL)canDragForOrientation:(RCHBackboardOrientation)orientation
 {
   switch (orientation)
   {
-    case RCHBackBoardOrientationTop:
+    case RCHBackboardOrientationTop:
       if (_translatedPoint.y < _panGestureStart.y) return YES;
       break;
-    case RCHBackBoardOrientationLeft:
+    case RCHBackboardOrientationLeft:
       if (_translatedPoint.x < _panGestureStart.x) return YES;
       break;
-    case RCHBackBoardOrientationRight:
+    case RCHBackboardOrientationRight:
       if (_translatedPoint.x > _panGestureStart.x) return YES;
       break;
-    case RCHBackBoardOrientationBottom:
+    case RCHBackboardOrientationBottom:
       if (_translatedPoint.y > _panGestureStart.y) return YES;
       break;
   }
   return NO;
 }
 
-- (void)handleDragForOrientation:(RCHBackBoardOrientation)orientation
+- (void)handleDragForOrientation:(RCHBackboardOrientation)orientation
 {
   switch (orientation)
   {
-    case RCHBackBoardOrientationLeft:
+    case RCHBackboardOrientationLeft:
       [self dragForLeft];
       break;
-    case RCHBackBoardOrientationRight:
+    case RCHBackboardOrientationRight:
       [self dragForRight];
       break;
-    case RCHBackBoardOrientationTop:
+    case RCHBackboardOrientationTop:
       [self dragForTop];
       break;
-    case RCHBackBoardOrientationBottom:
+    case RCHBackboardOrientationBottom:
       [self dragForBottom];
       break;
   }
@@ -192,31 +192,31 @@ typedef enum {
   [self dragWithOrientation:_backboard.orientation start:start translation:translation track:track current:current threshold:threshold];
 }
 
-- (void)dragWithOrientation:(RCHBackBoardOrientation)orientation start:(CGFloat)start translation:(CGFloat)translation track:(CGFloat)track current:(CGFloat)current threshold:(CGFloat)threshold
+- (void)dragWithOrientation:(RCHBackboardOrientation)orientation start:(CGFloat)start translation:(CGFloat)translation track:(CGFloat)track current:(CGFloat)current threshold:(CGFloat)threshold
 {
   CGFloat dragMovement = (translation - track);
   CGFloat dragWithMovement = start += dragMovement;
   
   switch (orientation) {
-    case RCHBackBoardOrientationTop:
+    case RCHBackboardOrientationTop:
     {
       _contentView.center = CGPointMake(_contentView.center.x, dragWithMovement);
       if (current <= threshold) { _dragThresholdReached = YES; }
     }
       break;
-    case RCHBackBoardOrientationLeft:
+    case RCHBackboardOrientationLeft:
     {
       _contentView.center = CGPointMake(dragWithMovement, _contentView.center.y);
       if (current <= threshold) { _dragThresholdReached = YES; }
     }
       break;
-    case RCHBackBoardOrientationRight:
+    case RCHBackboardOrientationRight:
     {
       _contentView.center = CGPointMake(dragWithMovement, _contentView.center.y);
       if (current >= threshold) { _dragThresholdReached = YES; }
     }
       break;
-    case RCHBackBoardOrientationBottom:
+    case RCHBackboardOrientationBottom:
     {
       _contentView.center = CGPointMake(_contentView.center.x, dragWithMovement);
       if (current >= threshold) { _dragThresholdReached = YES; }

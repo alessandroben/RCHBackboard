@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RCHBackBoard.h"
 
-@interface RCHBackboardContainerViewController : UIViewController <RCHBackBoardContainerViewController>
+@interface RCHBackboardContainerViewController : UIViewController
 
 @property (assign, nonatomic) BOOL hasSetup;
 @property (strong, nonatomic) UIViewController *rootViewController;
