@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RCHBackboardInterface.h"
+#import "RCHBackboard.h"
 
 @interface RCHBackboardShadow : UIView
 

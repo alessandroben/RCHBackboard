@@ -12,6 +12,9 @@
 #import "RCHBackboardShadow.h"
 #import "RCHBackboardContainerViewController.h"
 
+#define RCH_DEFAULT_ANIMATION_DURATION 0.3f
+#define RCH_DEFAULT_SHADOW_WIDTH 30.0f
+
 NSString *const RCHBackboardWillPresentNotification = @"RCHBackboardWillPresentNotification";
 NSString *const RCHBackboardDidPresentNotification = @"RCHBackboardDidPresentNotification";
 NSString *const RCHBackboardWillDismissNotification = @"RCHBackboardWillDismissNotification";
@@ -76,21 +79,18 @@ static NSMutableDictionary *__backboards = nil;
     NSParameterAssert(containerViewController);
     NSParameterAssert(viewController);
     NSAssert(width > 0, @"Width must be greater than zero to present the backboard");
-    
     NSAssert(![__backboards objectForKey:name], @"Each backboard should have a unique name");
-    [__backboards setObject:self forKey:name];
     
     self.name = name;
     self.width = width;
     self.orientation = orientation;
     self.viewController = viewController;
-    
     self.containerViewController = containerViewController;
-    
     self.animationDuration = RCH_DEFAULT_ANIMATION_DURATION;
     self.shadowWidth = RCH_DEFAULT_SHADOW_WIDTH;
     self.gestureControl = [[RCHBackboardGestureControl alloc] initWithDelegate:self];
     
+    [__backboards setObject:self forKey:name];
     [self notifications];
   }
   return self;
@@ -151,11 +151,10 @@ static NSMutableDictionary *__backboards = nil;
   [_containerViewController.backboardViewController addChildViewController:_viewController];
   [_containerViewController.backboardViewController.view addSubview:_viewController.view];
   [self setupShadow];
-  [self setupGestures];
   
-  [UIView animateWithDuration:self.animationDuration animations:^{
+  [UIView animateWithDuration:_animationDuration animations:^{
     
-    CGRect rootViewFrame = self.containerViewController.rootViewController.view.frame;
+    CGRect rootViewFrame = _containerViewController.rootViewController.view.frame;
     switch (self.orientation) {
       case RCHBackboardOrientationLeft:
         rootViewFrame.origin.x += self.width;
@@ -170,9 +169,11 @@ static NSMutableDictionary *__backboards = nil;
         rootViewFrame.origin.y -= self.width;
         break;
     }
-    self.containerViewController.rootViewController.view.frame = rootViewFrame;
+    [_containerViewController.rootViewController.view setFrame:rootViewFrame];
     
   } completion:^(BOOL finished){
+    
+    [self setupGestures];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:RCHBackboardDidPresentNotification object:self userInfo:@{@"Name": self.name}];
     

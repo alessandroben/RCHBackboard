@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RCHBackboardInterface.h"
 
 @class RCHBackboardGestureControl, RCHBackboard;
 

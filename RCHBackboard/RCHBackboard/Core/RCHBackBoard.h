@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RCHBackboardInterface.h"
+#import <QuartzCore/QuartzCore.h>
 #import "RCHBackboardGestureControl.h"
 #import "RCHBackboardContainerViewController.h"
 
@@ -18,6 +18,25 @@
  Displays view controllers, usually for menus, from behind the main view controller of the application.
  
  */
+
+typedef NS_ENUM(NSInteger, RCHBackboardState) {
+  RCHBackboardStateClosed,
+  RCHBackboardStateOpening,
+  RCHBackboardStateOpen,
+  RCHBackboardStateClosing
+};
+
+typedef NS_ENUM(NSInteger, RCHBackboardOrientation) {
+  RCHBackboardOrientationLeft,
+  RCHBackboardOrientationTop,
+  RCHBackboardOrientationRight,
+  RCHBackboardOrientationBottom
+};
+
+extern NSString *const RCHBackboardWillPresentNotification;
+extern NSString *const RCHBackboardDidPresentNotification;
+extern NSString *const RCHBackboardWillDismissNotification;
+extern NSString *const RCHBackboardDidDismissNotification;
 
 @class RCHBackboardShadow;
 
