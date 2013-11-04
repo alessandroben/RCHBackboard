@@ -13,7 +13,7 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  [self addChildViewController:self.backboardPresentationViewController];
+  [self addChildViewController:self.backboardViewController];
   [self addChildViewController:self.rootViewController];
   [[self view] addSubview:_backboardViewController.view];
   [[self view] addSubview:_rootViewController.view];
@@ -21,7 +21,7 @@
 
 #pragma mark - Initializers
 
-- (UIViewController *)backboardPresentationViewController
+- (UIViewController *)backboardViewController
 {
   if (_backboardViewController != nil) { return _backboardViewController; }
   self.backboardViewController = [[UIViewController alloc] initWithNibName:nil bundle:nil];

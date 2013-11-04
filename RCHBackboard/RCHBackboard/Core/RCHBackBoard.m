@@ -150,7 +150,7 @@ static NSMutableDictionary *__backboards = nil;
   if (_isOpen) return;
   
   [[NSNotificationCenter defaultCenter] postNotificationName:RCHBackboardWillPresentNotification object:self userInfo:@{@"Name": self.name}];
-  
+  [self addBackboardToContainerForPresentation];
   [UIView animateWithDuration:_animationDuration animations:^{
     
     CGRect rootViewFrame = _containerViewController.rootViewController.view.frame;
@@ -195,7 +195,6 @@ static NSMutableDictionary *__backboards = nil;
   if (!self.isOpen) return;
   
   [[NSNotificationCenter defaultCenter] postNotificationName:RCHBackboardWillDismissNotification object:self userInfo:@{@"Name": self.name}];
-  [self addBackboardToContainerForPresentation];
   [UIView animateWithDuration:self.animationDuration animations:^{
     
     CGRect rootViewFrame = self.containerViewController.rootViewController.view.frame;
@@ -229,7 +228,6 @@ static NSMutableDictionary *__backboards = nil;
 
 
 #pragma mark - Shadow
-#pragma mark
 
 - (void)setupShadow
 {

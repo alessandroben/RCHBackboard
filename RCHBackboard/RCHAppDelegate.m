@@ -38,11 +38,11 @@
   
   // Create a backboard with the standard init method if you wish to reference it directly and pass it around
   UIViewController *menu = [[MenuViewController alloc] initWithNibName:nil bundle:nil];
-  _backboard = [[RCHBackboard alloc] initWithName:@"right" containerViewController:containerViewController viewController:menu orientation:RCHBackboardOrientationRight width:260.0f];
   
-  // Optionally use the class method to create your backboards and present/dismiss them by name when required
-  [RCHBackboard setupWithName:@"left" containerViewController:containerViewController viewController:menu orientation:RCHBackboardOrientationLeft width:100.0f];
+  // Optionally use the class method to create multiple backboards and present/dismiss them by name when required
   [RCHBackboard setupWithName:@"top" containerViewController:containerViewController viewController:menu orientation:RCHBackboardOrientationTop width:50.0f];
+  [RCHBackboard setupWithName:@"left" containerViewController:containerViewController viewController:menu orientation:RCHBackboardOrientationLeft width:100.0f];
+  [RCHBackboard setupWithName:@"right" containerViewController:containerViewController viewController:menu orientation:RCHBackboardOrientationRight width:260.0f];
   [RCHBackboard setupWithName:@"bottom" containerViewController:containerViewController viewController:menu orientation:RCHBackboardOrientationBottom width:400.0f];
 
   // We're done, lift the curtains and start the show
