@@ -10,6 +10,11 @@
 
 @implementation HomeViewController
 
+- (NSString *)title
+{
+  return @"Hamburgers";
+}
+
 - (IBAction)topButtonAction:(id)sender
 {
   [RCHBackboard presentBackboardWithName:@"top" completion:nil];

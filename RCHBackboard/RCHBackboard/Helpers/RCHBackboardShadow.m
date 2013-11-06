@@ -1,9 +1,9 @@
 //
 //  RCHBackboardShadow.m
-//  Unity-iPhone
+//  RCHBackboard
 //
-//  Created by Rob Hayward on 20/06/2013.
-//
+//  Created by Rob Hayward on 28/11/2012.
+//  Copyright (c) 2012 Rob Hayward. All rights reserved.
 //
 
 #import "RCHBackboardShadow.h"

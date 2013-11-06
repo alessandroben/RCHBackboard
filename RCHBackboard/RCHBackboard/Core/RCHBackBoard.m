@@ -1,9 +1,9 @@
 //
 //  RCHBackboard.m
-//  Backboard
+//  RCHBackboard
 //
-//  Created by Rob Hayward on 19/06/2013.
-//  Copyright (c) 2013 Robin Hayward. All rights reserved.
+//  Created by Rob Hayward on 28/11/2012.
+//  Copyright (c) 2012 Rob Hayward. All rights reserved.
 //
 
 #import "RCHBackboard.h"
@@ -12,7 +12,7 @@
 #import "RCHBackboardShadow.h"
 
 #define RCH_DEFAULT_ANIMATION_DURATION 0.3f
-#define RCH_DEFAULT_SHADOW_WIDTH 30.0f
+#define RCH_DEFAULT_SHADOW_WIDTH 20.0f
 
 NSString *const RCHBackboardWillPresentNotification = @"RCHBackboardWillPresentNotification";
 NSString *const RCHBackboardDidPresentNotification = @"RCHBackboardDidPresentNotification";
@@ -70,6 +70,14 @@ static NSMutableDictionary *__backboards = nil;
   RCHBackboard *backboard = [__backboards objectForKey:name];
   if (!backboard) return;
   [backboard dismissWithCompletion:completion];
+}
+
++ (void)tearDown
+{
+  for (RCHBackboard *backboard in [__backboards allValues]) {
+    [backboard tearDown];
+  }
+  __backboards = [NSMutableDictionary dictionaryWithCapacity:0];
 }
 
 - (id)initWithName:(NSString *)name container:(UIViewController *)container root:(UIViewController *)root backboard:(UIViewController *)backboard orientation:(RCHBackboardOrientation)orientation width:(CGFloat)width
@@ -194,8 +202,6 @@ static NSMutableDictionary *__backboards = nil;
 
 - (void)addBackboardToContainerForPresentation
 {
-  //[_backboardViewController addChildViewController:_viewController];
-  //[_containerViewController.backboardViewController.view addSubview:_viewController.view];
   [self setupShadow];
 }
 
@@ -204,6 +210,8 @@ static NSMutableDictionary *__backboards = nil;
 - (void)dismissWithCompletion:(void (^)(BOOL finished))completion
 {
   if (!self.isOpen) return;
+  
+  [_gestureControl.view removeFromSuperview];
   
   [[NSNotificationCenter defaultCenter] postNotificationName:RCHBackboardWillDismissNotification object:self userInfo:@{@"Name": self.name}];
   [UIView animateWithDuration:self.animationDuration animations:^{
@@ -226,10 +234,6 @@ static NSMutableDictionary *__backboards = nil;
     _rootViewController.view.frame = rootViewFrame;
     
   } completion:^(BOOL finished){
-    
-//    [self.viewController.view removeFromSuperview];
-//    [self.viewController removeFromParentViewController];
-//    [self.shadow removeFromSuperview];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:RCHBackboardDidDismissNotification object:self userInfo:@{@"Name": self.name}];
     
@@ -279,7 +283,6 @@ static NSMutableDictionary *__backboards = nil;
 }
 
 #pragma mark - Gestures
-#pragma mark
 
 - (void)setupGestures
 {
@@ -295,13 +298,11 @@ static NSMutableDictionary *__backboards = nil;
 
 - (void)RCHBackboardGestureTapReceived:(RCHBackboardGestureControl *)gestureControl
 {
-  [_gestureControl.view removeFromSuperview];
   [self dismissWithCompletion:nil];
 }
 
 - (void)RCHBackboardGestureSwipeToCloseReceived:(RCHBackboardGestureControl *)gestureControl
 {
-  [_gestureControl.view removeFromSuperview];
   [self dismissWithCompletion:nil];
 }
 

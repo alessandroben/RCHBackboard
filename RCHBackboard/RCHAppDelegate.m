@@ -36,7 +36,7 @@
   UIViewController *menu = [[MenuViewController alloc] initWithNibName:nil bundle:nil];
   
   // Optionally use this class method to create multiple backboards and present/dismiss them by name when required
-  [RCHBackboard setupWithName:@"top" container:containerViewController root:navigationController backboard:menu orientation:RCHBackboardOrientationTop width:50];
+  [RCHBackboard setupWithName:@"top" container:containerViewController root:navigationController backboard:menu orientation:RCHBackboardOrientationTop width:90];
   [RCHBackboard setupWithName:@"left" container:containerViewController root:navigationController backboard:menu orientation:RCHBackboardOrientationLeft width:150];
   [RCHBackboard setupWithName:@"bottom" container:containerViewController root:navigationController backboard:menu orientation:RCHBackboardOrientationBottom width:350];
   [RCHBackboard setupWithName:@"right" container:containerViewController root:navigationController backboard:menu orientation:RCHBackboardOrientationRight width:250];

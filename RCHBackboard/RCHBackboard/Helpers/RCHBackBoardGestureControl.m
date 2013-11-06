@@ -1,9 +1,9 @@
 //
 //  RCHBackboardGestureControl.m
-//  BackboardMenu
+//  RCHBackboard
 //
-//  Created by Rob Hayward on 25/06/2013.
-//  Copyright (c) 2013 Robin Hayward. All rights reserved.
+//  Created by Rob Hayward on 28/11/2012.
+//  Copyright (c) 2012 Rob Hayward. All rights reserved.
 //
 
 #import "RCHBackboardGestureControl.h"

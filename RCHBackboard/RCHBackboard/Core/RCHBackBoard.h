@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 /**
-
+ 
  RCHBackboard
  
  Displays view controllers, usually for menus, from behind the main view controller of the application.
@@ -45,6 +45,9 @@ extern NSString *const RCHBackboardDidDismissNotification;
 @property (assign, nonatomic) RCHBackboardOrientation orientation;
 @property (assign, nonatomic) CGFloat width;
 @property (assign, nonatomic, readonly) BOOL isOpen;
+@property (strong, nonatomic, readonly) UIViewController *rootViewController;
+@property (strong, nonatomic, readonly) UIViewController *backboardViewController;
+@property (strong, nonatomic, readonly) UIViewController *containerViewController;
 
 @property (strong, nonatomic) RCHBackboardShadow *shadow;
 @property (assign, nonatomic) CGFloat shadowWidth;
@@ -74,6 +77,11 @@ extern NSString *const RCHBackboardDidDismissNotification;
 - (void)dismissWithCompletion:(void (^)(BOOL finished))completion;
 
 /**
+ Frees memory and removes the backboard from service
+ */
+- (void)tearDown;
+
+/**
  A shorter conveinience method to initialize a new backboard without returning the instance
  @see `initWithName:containerViewController:viewController:orientation:width`
  */
@@ -101,5 +109,10 @@ extern NSString *const RCHBackboardDidDismissNotification;
  @param completion Optional completion block called after the dismiss animation has finished
  */
 + (void)dismissBackboardWithName:(NSString *)name completion:(void (^)(BOOL finished))completion;
+
+/**
+ This will call the `tearDown` instance method on each registered backboard and clean up any references to them
+ */
++ (void)tearDown;
 
 @end
