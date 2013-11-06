@@ -43,7 +43,7 @@ Usage
 
 ![Backboards](https://raw.github.com/robinhayward/RCHBackboard/master/screenshot.png)
 
-[Video](https://raw.github.com/robinhayward/RCHBackboard/master/video.mov)
+[Video](https://raw.github.com/robinhayward/RCHBackboard/master/example-video.mov)
 
 ## Contact
 
