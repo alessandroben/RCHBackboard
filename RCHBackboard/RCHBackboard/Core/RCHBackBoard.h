@@ -36,23 +36,17 @@ extern NSString *const RCHBackboardDidPresentNotification;
 extern NSString *const RCHBackboardWillDismissNotification;
 extern NSString *const RCHBackboardDidDismissNotification;
 
-@class RCHBackboardShadow;
-
 @interface RCHBackboard : NSObject
 
 @property (strong, nonatomic) NSString *name;
 @property (assign, nonatomic) RCHBackboardState state;
 @property (assign, nonatomic) RCHBackboardOrientation orientation;
 @property (assign, nonatomic) CGFloat width;
+@property (assign, nonatomic) NSTimeInterval animationDuration;
 @property (assign, nonatomic, readonly) BOOL isOpen;
 @property (strong, nonatomic, readonly) UIViewController *rootViewController;
 @property (strong, nonatomic, readonly) UIViewController *backboardViewController;
 @property (strong, nonatomic, readonly) UIViewController *containerViewController;
-
-@property (strong, nonatomic) RCHBackboardShadow *shadow;
-@property (assign, nonatomic) CGFloat shadowWidth;
-
-@property (assign, nonatomic) NSTimeInterval animationDuration;
 
 /**
  @param name A unique name to identifier this board with if your app has more than one

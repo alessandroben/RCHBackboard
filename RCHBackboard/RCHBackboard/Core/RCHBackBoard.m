@@ -9,10 +9,8 @@
 #import "RCHBackboard.h"
 #import "RCHBackboard.h"
 #import "RCHBackboardGestureControl.h"
-#import "RCHBackboardShadow.h"
 
 #define RCH_DEFAULT_ANIMATION_DURATION 0.3f
-#define RCH_DEFAULT_SHADOW_WIDTH 20.0f
 
 NSString *const RCHBackboardWillPresentNotification = @"RCHBackboardWillPresentNotification";
 NSString *const RCHBackboardDidPresentNotification = @"RCHBackboardDidPresentNotification";
@@ -100,12 +98,9 @@ static NSMutableDictionary *__backboards = nil;
     self.backboardViewController = backboard;
     self.containerViewController = container;
     self.animationDuration = RCH_DEFAULT_ANIMATION_DURATION;
-    self.shadowWidth = RCH_DEFAULT_SHADOW_WIDTH;
     self.gestureControl = [[RCHBackboardGestureControl alloc] initWithDelegate:self];
     
     [self notifications];
-    [self setupContainerViewController];
-    [self addBackboardToContainerForPresentation];
   }
   return self;
 }
@@ -168,8 +163,13 @@ static NSMutableDictionary *__backboards = nil;
 {
   if (_isOpen) return;
   
+  [RCHBackboard dismiss];
+  
   [[NSNotificationCenter defaultCenter] postNotificationName:RCHBackboardWillPresentNotification object:self userInfo:@{@"Name": self.name}];
-  [self addBackboardToContainerForPresentation];
+  
+  [_containerViewController addChildViewController:_backboardViewController];
+  [_containerViewController.view insertSubview:_backboardViewController.view atIndex:0];
+  
   [UIView animateWithDuration:_animationDuration animations:^{
     
     CGRect rootViewFrame = _rootViewController.view.frame;
@@ -198,11 +198,6 @@ static NSMutableDictionary *__backboards = nil;
     if (completion) completion(finished);
     
   }];
-}
-
-- (void)addBackboardToContainerForPresentation
-{
-  [self setupShadow];
 }
 
 #pragma mark - Dismissing
@@ -237,49 +232,11 @@ static NSMutableDictionary *__backboards = nil;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:RCHBackboardDidDismissNotification object:self userInfo:@{@"Name": self.name}];
     
+    [_backboardViewController.view removeFromSuperview];
+    [_backboardViewController removeFromParentViewController];
+    
     if (completion) completion(finished);
   }];
-}
-
-
-#pragma mark - Shadow
-
-- (void)setupShadow
-{
-  [self.shadow removeFromSuperview];
-  
-  CGRect frame = _containerViewController.view.bounds;
-  CGFloat shadowWidth = self.shadowWidth;
-  RCHBackboardOrientation orientation = self.orientation;
-  switch (orientation)
-  {
-    case RCHBackboardOrientationLeft:
-    {
-      frame.origin.x = frame.origin.x - shadowWidth;
-      frame.size.width = shadowWidth;
-    }
-      break;
-    case RCHBackboardOrientationRight:
-    {
-      frame.origin.x = frame.size.width;
-      frame.size.width = shadowWidth;
-    }
-      break;
-    case RCHBackboardOrientationTop:
-    {
-      frame.origin.y = -shadowWidth;
-      frame.size.height = shadowWidth;
-    }
-      break;
-    case RCHBackboardOrientationBottom:
-    {
-      frame.origin.y = frame.size.height;
-      frame.size.height = shadowWidth;
-    }
-      break;
-  }
-  self.shadow = [[RCHBackboardShadow alloc] initWithFrame:frame andDirection:self.orientation];
-  [_rootViewController.view addSubview:_shadow];
 }
 
 #pragma mark - Gestures

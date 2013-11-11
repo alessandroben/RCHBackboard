@@ -10,6 +10,7 @@
 
 #import "HomeViewController.h"
 #import "MenuViewController.h"
+#import "CreditsViewController.h"
 
 #import "RCHBackboard.h"
 
@@ -31,6 +32,8 @@
   
   // Create a typical view controller stack however you need it
   UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[HomeViewController alloc] initWithNibName:nil bundle:nil]];
+  [containerViewController addChildViewController:navigationController];
+  [containerViewController.view addSubview:navigationController.view];
   
   // Create a view controller you wish to show for each backboard, this could be a navigation menu or pretty much anything you like
   UIViewController *menu = [[MenuViewController alloc] initWithNibName:nil bundle:nil];
@@ -38,8 +41,11 @@
   // Optionally use this class method to create multiple backboards and present/dismiss them by name when required
   [RCHBackboard setupWithName:@"top" container:containerViewController root:navigationController backboard:menu orientation:RCHBackboardOrientationTop width:90];
   [RCHBackboard setupWithName:@"left" container:containerViewController root:navigationController backboard:menu orientation:RCHBackboardOrientationLeft width:150];
-  [RCHBackboard setupWithName:@"bottom" container:containerViewController root:navigationController backboard:menu orientation:RCHBackboardOrientationBottom width:350];
   [RCHBackboard setupWithName:@"right" container:containerViewController root:navigationController backboard:menu orientation:RCHBackboardOrientationRight width:250];
+  
+  // Adding a backboard with a different viewcontroller..
+  UIViewController *credits = [[CreditsViewController alloc] initWithNibName:nil bundle:nil];
+  [RCHBackboard setupWithName:@"bottom" container:containerViewController root:navigationController backboard:credits orientation:RCHBackboardOrientationBottom width:350];
 
   // We're done, lift the curtains and start the show!
   [_window setRootViewController:containerViewController];
