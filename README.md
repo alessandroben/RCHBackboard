@@ -15,11 +15,11 @@ Usage
       // Create a standard window
       self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
       
-      // Backboards require a container view controller to maniuplate the views so we'll make the that the root of the application
-      UIViewController *containerViewController = [[UIViewController alloc] initWithNibName:nil bundle:nil];
-      
       // Create a typical view controller stack however you need it
       UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[HomeViewController alloc] initWithNibName:nil bundle:nil]];
+
+      // Backboards require a container view controller to maniuplate the views so we'll make the that the root of the application
+      UIViewController *containerViewController = [[UIViewController alloc] initWithNibName:nil bundle:nil];
       [containerViewController addChildViewController:navigationController];
       [containerViewController.view addSubview:navigationController.view];
       
