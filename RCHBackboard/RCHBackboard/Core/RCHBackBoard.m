@@ -22,7 +22,6 @@ static NSMutableDictionary *__backboards = nil;
 @interface RCHBackboard () <RCHBackboardGestureControlDelegate>
 
 @property (assign, nonatomic) BOOL isOpen;
-@property (strong, nonatomic) RCHBackboardGestureControl *gestureControl;
 @property (strong, nonatomic) UIViewController *rootViewController;
 @property (strong, nonatomic) UIViewController *backboardViewController;
 @property (strong, nonatomic) UIViewController *containerViewController;

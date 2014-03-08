@@ -36,11 +36,14 @@ extern NSString *const RCHBackboardDidPresentNotification;
 extern NSString *const RCHBackboardWillDismissNotification;
 extern NSString *const RCHBackboardDidDismissNotification;
 
+@class RCHBackboardGestureControl;
+
 @interface RCHBackboard : NSObject
 
 @property (strong, nonatomic) NSString *name;
 @property (assign, nonatomic) RCHBackboardState state;
 @property (assign, nonatomic) RCHBackboardOrientation orientation;
+@property (strong, nonatomic) RCHBackboardGestureControl *gestureControl;
 @property (assign, nonatomic) CGFloat width;
 @property (assign, nonatomic) NSTimeInterval animationDuration;
 @property (assign, nonatomic, readonly) BOOL isOpen;
