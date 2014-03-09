@@ -59,7 +59,7 @@ extern NSString *const RCHBackboardDidDismissNotification;
  @param width How much of the backboard should be visible once presented
  @return A new instance of an RCHBackboard
  */
-- (id)initWithName:(NSString *)name container:(UIViewController *)container root:(UIViewController *)root backboard:(UIViewController *)backboard orientation:(RCHBackboardOrientation)orientation width:(CGFloat)width;
+- (id)initWithName:(NSString *)name container:(UIViewController *)container root:(UIViewController *)root backboard:(UIViewController *)backboard orientation:(RCHBackboardOrientation)orientation margin:(CGFloat)margin;
 
 /**
  Animates the backboard on screen from beneath
@@ -82,7 +82,7 @@ extern NSString *const RCHBackboardDidDismissNotification;
  A shorter conveinience method to initialize a new backboard without returning the instance
  @see `initWithName:containerViewController:viewController:orientation:width`
  */
-+ (void)setupWithName:(NSString *)name container:(UIViewController *)container root:(UIViewController *)root backboard:(UIViewController *)backboard orientation:(RCHBackboardOrientation)orientation width:(CGFloat)width;
++ (void)setupWithName:(NSString *)name container:(UIViewController *)container root:(UIViewController *)root backboard:(UIViewController *)backboard orientation:(RCHBackboardOrientation)orientation margin:(CGFloat)margin;
 
 /**
  Calls dismiss on all known backboards

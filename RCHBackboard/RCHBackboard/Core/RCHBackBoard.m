@@ -38,9 +38,9 @@ static NSMutableDictionary *__backboards = nil;
   });
 }
 
-+ (void)setupWithName:(NSString *)name container:(UIViewController *)container root:(UIViewController *)root backboard:(UIViewController *)backboard orientation:(RCHBackboardOrientation)orientation width:(CGFloat)width
++ (void)setupWithName:(NSString *)name container:(UIViewController *)container root:(UIViewController *)root backboard:(UIViewController *)backboard orientation:(RCHBackboardOrientation)orientation margin:(CGFloat)margin
 {
-  __unused id instance = [[RCHBackboard alloc] initWithName:name container:container root:root backboard:backboard orientation:orientation width:width];
+  __unused id instance = [[RCHBackboard alloc] initWithName:name container:container root:root backboard:backboard orientation:orientation margin:margin];
 }
 
 + (void)dismiss
@@ -77,7 +77,7 @@ static NSMutableDictionary *__backboards = nil;
   __backboards = [NSMutableDictionary dictionaryWithCapacity:0];
 }
 
-- (id)initWithName:(NSString *)name container:(UIViewController *)container root:(UIViewController *)root backboard:(UIViewController *)backboard orientation:(RCHBackboardOrientation)orientation width:(CGFloat)width
+- (id)initWithName:(NSString *)name container:(UIViewController *)container root:(UIViewController *)root backboard:(UIViewController *)backboard orientation:(RCHBackboardOrientation)orientation margin:(CGFloat)margin
 {
   self = [super init];
   if (self) {
@@ -85,13 +85,13 @@ static NSMutableDictionary *__backboards = nil;
     NSParameterAssert(container);
     NSParameterAssert(root);
     NSParameterAssert(backboard);
-    NSAssert(width > 0, @"Width must be greater than zero to present the backboard");
+    NSAssert(margin > 0, @"Margin from a border must be greater than zero to present the backboard");
     NSAssert(![__backboards objectForKey:name], @"Each backboard should have a unique name");
     
     [__backboards setObject:self forKey:name];
     
     self.name = name;
-    self.width = width;
+    self.width = margin;
     self.orientation = orientation;
     self.rootViewController = root;
     self.backboardViewController = backboard;
