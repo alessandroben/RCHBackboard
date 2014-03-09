@@ -92,6 +92,8 @@ static NSMutableDictionary *__backboards = nil;
     
     self.name = name;
     self.width = margin;
+    self.maxPresentPosition = margin;
+    self.minDismissPosition = margin;
     self.orientation = orientation;
     self.rootViewController = root;
     self.backboardViewController = backboard;
@@ -174,16 +176,16 @@ static NSMutableDictionary *__backboards = nil;
     CGRect rootViewFrame = _rootViewController.view.frame;
     switch (self.orientation) {
       case RCHBackboardOrientationLeft:
-        rootViewFrame.origin.x += self.width;
+        rootViewFrame.origin.x = _maxPresentPosition;
         break;
       case RCHBackboardOrientationTop:
-        rootViewFrame.origin.y += self.width;
+        rootViewFrame.origin.y = _maxPresentPosition;
         break;
       case RCHBackboardOrientationRight:
-        rootViewFrame.origin.x -= self.width;
+        rootViewFrame.origin.x = _maxPresentPosition;
         break;
       case RCHBackboardOrientationBottom:
-        rootViewFrame.origin.y -= self.width;
+        rootViewFrame.origin.y = _maxPresentPosition;
         break;
     }
     [_rootViewController.view setFrame:rootViewFrame];
@@ -213,16 +215,16 @@ static NSMutableDictionary *__backboards = nil;
     CGRect rootViewFrame = _rootViewController.view.frame;
     switch (self.orientation) {
       case RCHBackboardOrientationLeft:
-        rootViewFrame.origin.x = 0;
+        rootViewFrame.origin.x = _minDismissPosition;
         break;
       case RCHBackboardOrientationTop:
-        rootViewFrame.origin.y = 0;
+        rootViewFrame.origin.y = _minDismissPosition;
         break;
       case RCHBackboardOrientationRight:
-        rootViewFrame.origin.x = 0;
+        rootViewFrame.origin.x = _minDismissPosition;
         break;
       case RCHBackboardOrientationBottom:
-        rootViewFrame.origin.y = 0;
+        rootViewFrame.origin.y = _minDismissPosition;
         break;
     }
     _rootViewController.view.frame = rootViewFrame;

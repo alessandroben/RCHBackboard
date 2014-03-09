@@ -112,4 +112,14 @@ extern NSString *const RCHBackboardDidDismissNotification;
  */
 + (void)tearDown;
 
+/**
+ Rapresent the maximum y/x that view controller could have when presenting
+ */
+@property (nonatomic) float maxPresentPosition;
+
+/**
+ Rapresent the minimum y/x that view controller could have when dismissing
+ */
+@property (nonatomic) float minDismissPosition;
+
 @end
